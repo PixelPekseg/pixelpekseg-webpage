@@ -1,73 +1,73 @@
-# Pixelpékség – demó weboldal
+# Pixelpékség – Demo Website
 
-Statikus (HTML/CSS/JS) bemutatkozó weboldal a Pixelpékség saját
-vállalkozásához. A `fodrasz-demo` projekt mintájára készült, ugyanazokkal a
-bevált technikai megoldásokkal (többnyelvűség, nyelvválasztó modal, Setmore
-"Book Now" widget). A kódban minden komment angolul van írva.
+Static (HTML/CSS/JS) marketing website for Pixelpékség's own business.
+Built after the `fodrasz-demo` project, reusing the same proven technical
+solutions (multilingual support, language picker modal, Setmore "Book Now"
+widget). All comments in the code are written in English.
 
-## Fájlstruktúra
+## File structure
 
-- `index.html` – **magyar** verzió (Kezdőlap, Szolgáltatásaink, Időpontfoglalás, Elérhetőségek)
-- `en/index.html` – **angol** verzió
-- `de/index.html` – **német** verzió
-- `style.css` – közös kinézet mindhárom nyelvi oldalhoz
-- `script.js` – közös JS: mobil menü, nyelvválasztó modal, Setmore widget
-- `images/` – ide kerülnek a képek (lásd lent)
+- `index.html` – **Hungarian** version (Home, Our Services, Booking, Contact)
+- `en/index.html` – **English** version
+- `de/index.html` – **German** version
+- `style.css` – shared styling for all three language pages
+- `script.js` – shared JS: mobile menu, language picker modal, Setmore widget
+- `images/` – images live here (see below)
 
-## Színpaletta – könnyen módosítható
+## Color palette – easy to change
 
-A `style.css` `:root` blokkjában található a 3 alapszín, amiket ha
-átírsz, az egész oldal színvilága frissül:
+The 3 base colors live in the `:root` block of `style.css`; changing them
+updates the color scheme of the entire site:
 
-- `--color-bg` (`#f1f7ed`, halvány menta) – fő háttérszín
-- `--color-dark` (`#243e36`, sötét erdőzöld) – címsorok, lábléc, elsődleges szöveg
-- `--color-primary` (`#7ca982`, zsályazöld) – gombok, kiemelések, aláhúzások (logó, email)
+- `--color-bg` (`#f1f7ed`, pale mint) – main background color
+- `--color-dark` (`#243e36`, dark forest green) – headings, footer, primary text
+- `--color-primary` (`#7ca982`, sage green) – buttons, highlights, underlines (logo, email)
 
-A `--color-primary-dark`, `--color-bg-alt` és `--color-border` ezekből
-levezetett, halványabb árnyalatok – ha nagyon más irányba viszed az
-alapszíneket, érdemes ezeket a levezetett tónusokat is újragondolni.
+`--color-primary-dark`, `--color-bg-alt`, and `--color-border` are lighter
+shades derived from these – if you move the base colors in a very different
+direction, consider re-deriving these tones too.
 
-## Képek
+## Images
 
-- **`images/hero.jpeg`** – a kezdőlap háttérképe (feltöltve, 1920×1888px-re optimalizálva, ~179 KB)
-- **`images/favicon.jpeg`** – böngésző-fül ikon (feltöltve, 512×512px-re vágva/optimalizálva, ~8 KB)
+- **`images/hero.jpeg`** – homepage background image (uploaded, optimized to 1920×1888px, ~179 KB)
+- **`images/favicon.jpeg`** – browser tab icon (uploaded, cropped/optimized to 512×512px, ~8 KB)
 
-Ha lecseréled bármelyiket egy új fotóra, érdemes ugyanígy előbb tömöríteni
-(max. ~1920px szélesség a hero-nak, 512×512px négyzet a faviconnak) –
-ellenkező esetben egy tömörítetlen telefonfotó könnyen több MB is lehet,
-ami lassítja az oldalt.
+If you replace either one with a new photo, compress it the same way first
+(max ~1920px width for the hero, a 512×512px square for the favicon) –
+otherwise an uncompressed phone photo can easily be several MB, which slows
+the site down.
 
-## Setmore foglalási link ("Website Consultation" szolgáltatás-kategória)
+## Setmore booking link ("Website Consultation" service category)
 
-A `data-booking-url` mindhárom nyelvi fájlban **két helyen** szerepel (a
-fejléc "Időpontfoglalás" gombjában és az Időpontfoglalás szekció
-gombjában), és mindegyik a saját nyelvén elérhető Setmore
-szolgáltatás-kategóriára mutat, nyelvkód-előtaggal (ez fordítja le a
-Setmore felület szövegeit is – lásd a `fodrasz-demo` README-jét a
-mechanizmus részletes magyarázatáért):
+`data-booking-url` appears **twice** in each language file (in the header's
+"Booking" button and in the Booking section's button), and each one points
+to the Setmore service category available in that language, with a
+language-code prefix (this also translates the Setmore interface text –
+see the `fodrasz-demo` README for a detailed explanation of the mechanism):
 
 - `index.html`: `https://pixelpekseg.setmore.com/hu/categories/0037f81e-36a4-48d4-bc42-3b46f79f128e`
 - `en/index.html`: `https://pixelpekseg.setmore.com/en/categories/dd21b91e-6831-42b8-baa4-7eff8aaf5d59`
 - `de/index.html`: `https://pixelpekseg.setmore.com/de/categories/e52a89fd-6958-428e-9dd6-ecbcb98e0421`
 
-**Ha a Setmore-on átnevezed/újra létrehozod a szolgáltatást**, kérd le
-újra a "Copy booking link"-et a kategóriánál, és frissítsd mindhárom
-fájlban, mindkét helyen (6 helyen összesen).
+**If you rename/recreate the service on Setmore**, get the new "Copy
+booking link" for the category and update it in all three files, in both
+places (6 spots total).
 
-## Helyi megnyitás
+## Opening locally
 
-Nincs szükség szerverre, elég duplán kattintani az `index.html` fájlon,
-vagy VS Code-ban a "Live Server" kiterjesztéssel megnyitni.
+No server needed – just double-click `index.html`, or open it in VS Code
+with the "Live Server" extension.
 
-## Publikálás GitHub Pages-re
+## Publishing to GitHub Pages
 
-1. Hozz létre egy új repository-t a GitHub-on.
-2. Töltsd fel ebbe a mappát (git init, add, commit, push).
-3. A repo **Settings → Pages** menüjében válaszd ki a `main` branch-et (root mappa) forrásként.
-4. Pár percen belül elérhető lesz az oldal a
-   `https://<felhasznalonev>.github.io/<repo-nev>/` címen.
-5. Amint megvan a saját domained, a **Settings → Pages → Custom domain**
-   mezőben tudod beállítani.
+1. Create a new repository on GitHub.
+2. Push this folder to it (git init, add, commit, push).
+3. In the repo's **Settings → Pages**, select the `main` branch (root
+   folder) as the source.
+4. Within a few minutes the site will be live at
+   `https://<username>.github.io/<repo-name>/`.
+5. Once you have your own domain, you can set it in **Settings → Pages →
+   Custom domain**.
 
-Ha később módosítasz valamit és push-olod, a GitHub Pages automatikusan
-frissíti az élő oldalt.
+If you make changes later and push them, GitHub Pages automatically
+updates the live site.
