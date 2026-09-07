@@ -345,28 +345,6 @@ img {
   z-index: -2;
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Neutral (colorless) darkening only, for text readability - does not
-     tint the photo's own colors */
-  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.5));
-}
-
-.hero-content {
-  text-align: center;
-}
-
-.hero-content h1 {
-  color: #fff;
-  font-size: 3rem;
-  margin: 0;
-}
-
 /* ==========================================================
    Services section (feature cards)
    ========================================================== */
@@ -511,9 +489,5 @@ img {
     padding: 16px 20px;
     border-left: none;
     border-top: 1px solid var(--color-border);
-  }
-
-  .hero-content h1 {
-    font-size: 2.1rem;
   }
 }

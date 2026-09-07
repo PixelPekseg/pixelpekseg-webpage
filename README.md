@@ -71,3 +71,60 @@ with the "Live Server" extension.
 
 If you make changes later and push them, GitHub Pages automatically
 updates the live site.
+
+## Connecting the `pixelpekseg.com` domain
+
+The `CNAME` file in this repo already contains `pixelpekseg.com`, which is
+what GitHub Pages needs to serve the site on that domain instead of the
+default `github.io` URL. Two more things are needed:
+
+1. **DNS records** (set these at your registrar/DNS provider, e.g.
+   Cloudflare): point the apex domain to GitHub Pages with four `A`
+   records to GitHub's IPs (`185.199.108.153`, `.109.153`, `.110.153`,
+   `.111.153`), and optionally a `CNAME` record for `www` pointing to
+   `<username>.github.io`. If you're on Cloudflare, set these DNS records
+   to **"DNS only"** (grey cloud, not orange/proxied) so GitHub can issue
+   the HTTPS certificate correctly.
+2. **Settings → Pages → Custom domain**: enter `pixelpekseg.com` and save.
+   Once DNS propagates (can take up to a few hours), tick **"Enforce
+   HTTPS"** in the same settings panel.
+
+## SEO / Google searchability
+
+### What's already in the code
+
+Every language file (`index.html`, `en/index.html`, `de/index.html`)
+already has, in its `<head>`:
+
+- **`<meta name="description">`** – shown under the title in Google's
+  search results
+- **`canonical` and `hreflang` links** – tell Google that the HU/EN/DE
+  pages are translations of each other, so it shows the right language to
+  the right searcher
+- **Open Graph (`og:*`) tags** – control how the page looks when shared on
+  Facebook/Messenger/WhatsApp/LinkedIn (title, description, image)
+- **Structured data (JSON-LD, `ProfessionalService` type)** – helps Google
+  understand this is a service business; unlike `fodrasz-demo`'s
+  `HairSalon` type, no address/opening hours are set here since
+  Pixelpékség isn't a walk-in local shop
+
+There's also a root **`robots.txt`** (points crawlers to the sitemap) and
+**`sitemap.xml`** (lists all 3 language pages) – both already use the real
+`pixelpekseg.com` domain, no placeholder to replace this time.
+
+### Google Search Console (free, you need to do this yourself)
+
+1. Register at [search.google.com/search-console](https://search.google.com/search-console)
+2. Add `pixelpekseg.com` as a **Domain** property (this requires adding a
+   DNS `TXT` record at your DNS provider for verification)
+3. Submit the sitemap: **Sitemaps** menu → enter `sitemap.xml`
+4. Google typically starts indexing the site within a few days
+
+### Google Business Profile – optional here
+
+Unlike a hair salon, Pixelpékség has no walk-in storefront, so a Google
+Business Profile (the thing that shows up on Google Maps for "web designer
+near me" searches) is optional rather than essential – it can still be
+worth setting up later at [google.com/business](https://www.google.com/business/)
+if local/regional discovery matters, but it's not required for the site
+to be indexed and found by name.
