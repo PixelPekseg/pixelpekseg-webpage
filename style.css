@@ -400,9 +400,16 @@ img {
   background: var(--color-bg-alt);
 }
 
+.contact-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
 .contact-card {
+  flex: 1 1 260px;
   max-width: 420px;
-  margin: 0 auto;
   text-align: center;
   background: var(--color-bg);
   border: 1px solid var(--color-border);
@@ -410,7 +417,8 @@ img {
   padding: 32px 24px;
 }
 
-.contact-email {
+.contact-email,
+.contact-messenger {
   display: inline-block;
   margin-top: 12px;
   font-size: 1.2rem;
