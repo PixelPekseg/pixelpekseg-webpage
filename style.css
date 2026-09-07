@@ -1,0 +1,519 @@
+/* ==========================================================
+   Base setup
+   ========================================================== */
+:root {
+  /* ----------------------------------------------------------
+     BRAND COLOR SCHEME — change only these 3 base colors to
+     re-theme the whole site:
+       - pale mint (background): #f1f7ed
+       - dark forest green:      #243e36
+       - sage green:             #7ca982
+     The remaining variables (bg-alt, border, primary-dark) are
+     light tints/shades derived FROM these 3 colors. If you
+     change the base colors a lot, consider regenerating these
+     derived tones too for the best look.
+     ---------------------------------------------------------- */
+  --color-dark: #243e36;                          /* dark forest green - headings, footer, primary text */
+  --color-primary: #7ca982;                       /* sage green - buttons, highlights */
+  --color-primary-dark: #69906f;                  /* darker sage - hover state (derived) */
+  --color-text: #243e36;                          /* body text (same as dark) */
+  --color-text-muted: rgba(36, 62, 54, 0.65);      /* muted dark green - secondary text */
+  --color-bg: #f1f7ed;                             /* pale mint - main background */
+  --color-bg-alt: #dfebdd;                         /* slightly deeper mint tint - alternating section background (derived) */
+  --color-border: #d4e3d2;                         /* pale green tint - borders (derived) */
+
+  --font-heading: 'Segoe UI', Arial, sans-serif;
+  --font-body: 'Segoe UI', Arial, sans-serif;
+  --max-width: 1100px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-top: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 70px 0;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.section-lead {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 40px;
+  color: var(--color-text-muted);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-dark);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================
+   Header / navigation
+   ========================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(241, 247, 237, 0.95);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(4px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.logo span {
+  color: var(--color-dark);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a,
+.nav-book-btn {
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  position: relative;
+}
+
+.main-nav a:hover,
+.nav-book-btn:hover {
+  color: var(--color-dark);
+  box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+
+.nav-book-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.lang-switch {
+  padding-left: 16px;
+  border-left: 1px solid var(--color-border);
+}
+
+.lang-current {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-dark);
+  cursor: pointer;
+  padding: 4px 2px;
+}
+
+.lang-current .chevron {
+  width: 9px;
+  height: 9px;
+  color: var(--color-dark);
+  transition: transform 0.2s ease;
+}
+
+.lang-current.open .chevron {
+  transform: rotate(180deg);
+}
+
+.lang-current .flag {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+  display: block;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(36, 62, 54, 0.15);
+}
+
+/* ==========================================================
+   Language picker modal
+   position:fixed so no parent overflow can ever clip it —
+   works reliably on mobile too, unlike an in-header dropdown.
+   ========================================================== */
+.lang-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lang-modal.open {
+  display: flex;
+}
+
+.lang-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(36, 62, 54, 0.5);
+}
+
+.lang-modal-box {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  background: var(--color-bg);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 20px 50px rgba(36, 62, 54, 0.3);
+}
+
+.lang-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.lang-modal-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.lang-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--color-dark);
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.lang-modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lang-modal-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+.lang-modal-option:hover {
+  background: var(--color-bg-alt);
+}
+
+.lang-modal-option.active {
+  background: var(--color-bg-alt);
+}
+
+.lang-modal-option .flag {
+  width: 26px;
+  height: 18px;
+  border-radius: 3px;
+  display: block;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(36, 62, 54, 0.15);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--color-dark);
+  border-radius: 2px;
+}
+
+/* ==========================================================
+   Hero section
+   ========================================================== */
+.hero {
+  position: relative;
+  height: 70vh;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Neutral (colorless) darkening only, for text readability - does not
+     tint the photo's own colors */
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.5));
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.hero-content h1 {
+  color: #fff;
+  font-size: 3rem;
+  margin: 0;
+}
+
+/* ==========================================================
+   Services section (feature cards)
+   ========================================================== */
+.services {
+  background: var(--color-bg-alt);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.service-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 28px 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(36, 62, 54, 0.1);
+}
+
+.service-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ==========================================================
+   Booking section
+   ========================================================== */
+.booking {
+  background: var(--color-bg);
+}
+
+.booking-cta {
+  text-align: center;
+}
+
+/* ==========================================================
+   Contact section
+   ========================================================== */
+.contact {
+  background: var(--color-bg-alt);
+}
+
+.contact-card {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 32px 24px;
+}
+
+.contact-email {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+/* ==========================================================
+   Footer
+   ========================================================== */
+.site-footer {
+  background: var(--color-dark);
+  color: var(--color-bg);
+  padding: 30px 0;
+}
+
+.footer-inner {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer-inner p {
+  margin: 4px 0;
+}
+
+/* ==========================================================
+   Responsiveness
+   ========================================================== */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .main-nav.open {
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 20px;
+  }
+
+  .main-nav li {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .main-nav a,
+  .nav-book-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 14px 0;
+  }
+
+  .lang-switch {
+    display: flex;
+    justify-content: center;
+    padding: 16px 20px;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .hero-content h1 {
+    font-size: 2.1rem;
+  }
+}

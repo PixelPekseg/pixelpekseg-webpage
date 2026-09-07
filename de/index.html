@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixelpékség</title>
+  <!-- Replace / upload images/favicon.jpeg with your own logo/icon -->
+  <link rel="icon" type="image/jpeg" href="../images/favicon.jpeg">
+  <link rel="apple-touch-icon" href="../images/favicon.jpeg">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <!-- Header / navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="logo">Pixel<span>pékség</span></a>
+
+      <!-- Hamburger button for mobile view -->
+      <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="#home">Startseite</a></li>
+          <li><a href="#services">Unsere Leistungen</a></li>
+          <li><button id="Anywhere_button_nav" class="nav-book-btn anywhere-book-now-button" type="button" data-booking-url="https://pixelpekseg.setmore.com/de/categories/e52a89fd-6958-428e-9dd6-ecbcb98e0421" data-new-tab="false">Terminbuchung</button></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+
+        <!-- Language picker: only the current language is shown, click opens a popup modal -->
+        <div class="lang-switch">
+          <button class="lang-current" id="langToggle" type="button" aria-haspopup="dialog" aria-expanded="false">
+            <svg class="flag" viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#000"/><rect y="6.67" width="30" height="6.67" fill="#DD0000"/><rect y="13.34" width="30" height="6.66" fill="#FFCE00"/></svg>
+            DE
+            <svg class="chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Home section: just a background photo + the business name -->
+  <section id="home" class="hero">
+    <div class="hero-overlay">
+      <div class="container hero-content">
+        <h1>Pixelpékség</h1>
+      </div>
+    </div>
+    <!-- Replace images/hero.jpeg with your own photo -->
+    <img src="../images/hero.jpeg" alt="Pixelpékség" class="hero-bg">
+  </section>
+
+  <!-- Services section -->
+  <section id="services" class="section services">
+    <div class="container">
+      <h2>Unsere Leistungen</h2>
+      <p class="section-lead">
+        Wir erstellen personalisierte Websites, vor allem für kleine Unternehmen.
+      </p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Individuelle, maßgeschneiderte Websites</h3>
+          <p>
+            Eine Website kann einfach und statisch sein, auf Wunsch
+            integrieren wir aber auch Funktionen wie eine
+            Online-Terminbuchung oder eine Online-Zahlung. Jede Website
+            entsteht ganz nach Ihren individuellen Wünschen und kann
+            jederzeit angepasst werden.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Erweiterbare Funktionen</h3>
+          <p>
+            Auf Wunsch bauen wir weitere Funktionen ein – etwa eine
+            Online-Terminbuchung oder eine Online-Zahlung –, damit die
+            Website Ihr Tagesgeschäft wirklich unterstützt.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <h3>Laufende Unterstützung</h3>
+          <p>
+            Auch nach der Fertigstellung lassen wir Sie nicht allein – wir
+            übernehmen die Wartung und helfen bei künftigen Änderungen,
+            etwa bei Preisanpassungen, neuen Öffnungszeiten oder der
+            Vorstellung eines neuen Mitarbeiters.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking section -->
+  <section id="booking" class="section booking">
+    <div class="container">
+      <h2>Terminbuchung</h2>
+      <p class="section-lead">
+        Da wir möchten, dass Ihre fertige Website in jedem Detail Ihren
+        Vorstellungen entspricht, buchen Sie online einen Termin mit uns –
+        so können wir gemeinsam alles besprechen und sicherstellen, dass
+        das Ergebnis genau so wird, wie Sie es sich vorgestellt haben.
+      </p>
+
+      <!--
+        Setmore "Book Now" widget, using the "Website Consultation" service
+        category link. If you rename/recreate this service on Setmore, get
+        the new "Copy booking link" and update data-booking-url below (and
+        in the header nav button too).
+      -->
+      <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js"></script>
+      <div class="booking-cta">
+        <button id="Anywhere_button_hero" class="btn btn-primary anywhere-book-now-button" type="button" data-booking-url="https://pixelpekseg.setmore.com/de/categories/e52a89fd-6958-428e-9dd6-ecbcb98e0421" data-new-tab="false">
+          Termin buchen
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact section -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <h2>Kontakt</h2>
+      <div class="contact-card">
+        <p>Kontaktieren Sie uns gerne über die folgende E-Mail-Adresse:</p>
+        <a class="contact-email" href="mailto:pixelpekseg@gmail.com">pixelpekseg@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Pixelpékség. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <!-- Language picker popup modal -->
+  <div class="lang-modal" id="langModal">
+    <div class="lang-modal-backdrop" id="langModalBackdrop"></div>
+    <div class="lang-modal-box" role="dialog" aria-modal="true" aria-label="Sprache wählen">
+      <div class="lang-modal-header">
+        <h3>Sprache wählen</h3>
+        <button class="lang-modal-close" id="langModalClose" type="button" aria-label="Schließen">&times;</button>
+      </div>
+      <div class="lang-modal-list">
+        <a class="lang-modal-option" href="../index.html">
+          <svg class="flag" viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#CE2939"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.34" width="30" height="6.66" fill="#477050"/></svg>
+          Magyar
+        </a>
+        <a class="lang-modal-option" href="../en/index.html">
+          <svg class="flag" viewBox="0 0 30 20"><rect width="30" height="20" fill="#00247D"/><path d="M0,0 L30,20 M30,0 L0,20" stroke="#fff" stroke-width="4"/><path d="M0,0 L30,20 M30,0 L0,20" stroke="#CF142B" stroke-width="2"/><path d="M15,0 V20 M0,10 H30" stroke="#fff" stroke-width="6"/><path d="M15,0 V20 M0,10 H30" stroke="#CF142B" stroke-width="3.6"/></svg>
+          English
+        </a>
+        <a class="lang-modal-option active" href="index.html">
+          <svg class="flag" viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#000"/><rect y="6.67" width="30" height="6.67" fill="#DD0000"/><rect y="13.34" width="30" height="6.66" fill="#FFCE00"/></svg>
+          Deutsch
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>
